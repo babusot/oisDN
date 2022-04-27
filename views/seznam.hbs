@@ -1,0 +1,96 @@
+<div class="container text-center">
+  <div class="row">
+    <div class="col-md-6">
+      <h3><i class="fas fa-video me-2"></i>Seznam 100 najbolje ocenjenih filmov</h3>
+
+      <div style="width: fit-content; margin:0 auto">
+        <div class="d-inline-block">
+          <h5>
+            <i class="far fa-clock me-1"></i>Leto
+            <small>(<span id="leto-stevilo">...</span>)</small>
+          </h5>
+          <select class="mb-3" id="leto-izbira">
+          </select>
+        </div>
+        <div class="d-inline-block ms-5">
+          <h5>
+            <i class="fas fa-ticket me-1"></i>Žanr
+            <small>(<span id="zanr-stevilo">...</span>)</small>
+          </h5>
+          <select class="mb-3" id="zanr-izbira">
+          </select>
+        </div>
+      </div>
+
+      <div id="filmi">
+        {{#each seznamFilmov as |film|}}
+          <div id="{{film.id}}" class="film">
+            <button
+              type="button"
+              class="btn btn-light btn-sm {{film.marketing}}"
+            >
+              <i class="fas fa-plus"></i>
+              <strong><span
+                  class="naslov"
+                  dir="ltr"
+                >{{film.naslov}}</span></strong>
+              <i class="fas fa-globe-europe"></i>
+              {{#each film.jeziki as |jezik|}}
+              <span
+                class="jezik"
+              >
+              <img
+      src="https://flagcdn.com/16x12/{{jezik}}.png"
+        srcset="https://flagcdn.com/32x24/{{jezik}}.png 2x,
+     https://flagcdn.com/48x36/{{jezik}}.png 3x"
+        width="16"
+        height="12"
+          alt={{jezik}}>
+           
+              </span>
+             {{/each}}
+              <span class="text-nowrap"><i class="fas fa-signal"></i><span
+                  class="ocena"
+                >{{film.ocena}}</span></span>
+              <div style="display: none" class="text-nowrap"><i
+                  class="fas fa-calendar-days"
+                ></i><span
+                  class="datum-izdaje"
+                >{{film.datumIzdaje}}</span></div>
+              <span class="text-nowrap"><i class="far fa-clock"></i><span
+                  class="trajanje"
+                >{{film.trajanje}}</span>
+                min</span>
+            </button>
+          </div>
+        {{/each}}
+      </div>
+    </div>
+    <div class="col-md-6">
+      <h3><i class="fas fa-shopping-cart me-2"></i>Nakupovalna košarica</h3>
+      <div id="kosarica"></div>
+      <div id="sporocilo"></div>
+      <button
+        id="racun_html"
+        type="button"
+        class="btn btn-success btn-sm"
+        disabled
+      >
+        <i class="fas fa-euro-sign"></i>Pripravi račun (HTML)
+      </button>
+      <button
+        id="racun_xml"
+        type="button"
+        class="btn btn-success btn-sm"
+        disabled
+      >
+        <i class="fas fa-euro-sign"></i>Pripravi račun (XML)
+      </button>
+      <br />
+      <div id="chartContainer" style="height: 300px; width: 100%"></div>
+    </div>
+  </div>
+</div>
+
+<script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+<script src="skripte/seznam.js"></script>

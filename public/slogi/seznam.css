@@ -1,0 +1,14 @@
+#kosarica {
+  margin-bottom: 10px;
+}
+#podrobnosti,
+#chartContainer {
+  margin-top: 20px;
+}
+.film button {
+  width: 80%;
+  margin-bottom: 5px;
+}
+.obicajno {
+  color: black;
+}

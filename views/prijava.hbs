@@ -1,0 +1,248 @@
+<div class="container text-center pb-0">
+  <div class="row">
+    <div class="col-md-6">
+      <h3><i class="fas fa-user"></i>Dodajanje nove stranke</h3>
+      <div id="stranke">
+        <form
+          action=""
+          method="post"
+          enctype="multipart/form-data"
+          autocomplete="off"
+          novalidate
+        >
+          <div class="form-group">
+            <input
+              type="text"
+              class="form-control form-control-sm"
+              id="FirstName"
+              name="FirstName"
+              placeholder="Ime"
+              aria-describedby="FirstNameStatus"
+            />
+          </div>
+          <div class="form-group">
+            <div class="row">
+              <small class="text-muted mb-1">Predlagan vnos glede na priimek
+                obstoječe stranke.</small>
+            </div>
+            <div class="row">
+              <div class="col-md-8">
+                <input
+                  type="text"
+                  class="form-control form-control-sm inline"
+                  id="LastName"
+                  name="LastName"
+                  placeholder="Priimek"
+                />
+              </div>
+              <div class="col-md-4">
+                <button
+                  type="button"
+                  class="form-control btn btn-success btn-sm"
+                  id="dopolniPodatke"
+                  disabled
+                ><i class="fa-solid fa-folder-plus me-1"></i>
+                  Dopolni podatke
+                </button>
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="row">
+              <div class="col-md-8">
+                <input
+                  type="text"
+                  class="form-control form-control-sm"
+                  id="CompanyString"
+                  name="CompanyString"
+                  placeholder="Podjetje"
+                />
+              </div>
+              <div class="col-md-4">
+                <select
+                  class="form-select form-select-sm"
+                  id="CompanyType"
+                  name="CompanyType"
+                >
+                  <option selected value="" disabled>Vrsta podjetja ...</option>
+
+                  {{#each podjetja as |podj|}}
+                <option
+                  value="{{podj.vrednost}}"
+                >
+                  {{podj.tip}}
+                </option>
+              {{/each}}
+                </select>
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <input
+              type="text"
+              class="form-control form-control-sm"
+              id="Address"
+              name="Address"
+              placeholder="Naslov"
+            />
+          </div>
+          <div class="form-group">
+            <input
+              type="text"
+              class="form-control form-control-sm"
+              id="State"
+              name="State"
+              placeholder="Okrožje"
+            />
+          </div>
+          <div class="form-group">
+            <input
+              type="text"
+              class="form-control form-control-sm"
+              id="PostalCode"
+              name="PostalCode"
+              placeholder="Poštna številka"
+            />
+          </div>
+          <div class="form-group">
+            <input
+              type="text"
+              class="form-control form-control-sm"
+              id="City"
+              name="City"
+              placeholder="Mesto"
+            />
+          </div>
+          <div class="form-group">
+            <div class="row">
+              <div class="input-group col-auto">
+                <input
+                  type="text"
+                  class="form-control form-control-sm"
+                  id="Country"
+                  name="Country"
+                  placeholder="Država"
+                  aria-describedby="CountryStatus"
+                />
+                <div class="input-group-append">
+                  <span class="input-group-text" id="CountryStatus"><i
+                      class="fas fa-times"
+                    ></i></span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="input-group">
+              <input
+                type="text"
+                class="form-control form-control-sm"
+                id="Phone"
+                name="Phone"
+                placeholder="Telefon"
+              />
+            </div>
+          </div>
+          <div class="form-group">
+            <input
+              type="text"
+              class="form-control form-control-sm"
+              id="Fax"
+              name="Fax"
+              placeholder="Faks"
+            />
+          </div>
+          <div class="form-group" style="text-align: left">
+            <input
+              type="email"
+              class="form-control form-control-sm"
+              id="Email"
+              name="Email"
+              placeholder="E-pošta"
+            />
+          </div>
+          <div class="form-group">
+            <p class="help-block">{{sporocilo}}</p>
+            <input
+              type="submit"
+              id="Register"
+              class="btn btn-secondary btn-sm"
+              value="Registracija"
+              disabled
+            />
+          </div>
+        </form>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <h3><i class="far fa-hand-point-right"></i>Izbira stranke</h3>
+      <div>
+        <select
+          size="10"
+          id="seznamStrank"
+          name="seznamStrank"
+          class="form-control form-control-sm odmik"
+        >
+          {{#each seznamStrank as |stranka|}}
+            <option value="{{stranka.CustomerId}}" style="size:50%">
+              {{{stranka.Country}}}
+              |
+              {{stranka.FirstName}}
+              {{stranka.LastName}},
+              {{stranka.Email}}
+              {{#if stranka.Company}} 
+                  ({{stranka.Company}})
+              {{/if}}
+            </option>
+          {{/each}}
+        </select>
+      </div>
+      <br />
+      <h3><i class="fas fa-funnel-dollar"></i>Izbira računa</h3>
+      <div id="seznam2">
+        <form
+          action="/izpisiRacunBaza"
+          method="post"
+          enctype="multipart/form-data"
+        >
+          <div class="form-group">
+            <select
+              size="10"
+              id="seznamRacunov"
+              name="seznamRacunov"
+              class="form-control form-control-sm odmik"
+            >
+              {{#each seznamRacunov as |racun|}}
+                <option
+                  value="{{racun.InvoiceId}}"
+                  customerId="{{racun.CustomerId}}"
+                  selected
+                >
+                  {{racun.Naziv}}
+                </option>
+              {{/each}}
+            </select>
+          </div>
+          <div class="form-group">
+            <input
+              type="submit"
+              class="btn btn-secondary btn-sm"
+              value="Izbira računa"
+            />
+          </div>
+        </form>
+        <div class="help-block"><small id="najboljeOcenjeniFilm">{{najvecjiFilm}}</small></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script
+  type="text/javascript"
+  src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"
+></script>
+<link
+  rel="stylesheet"
+  href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css"
+/>
+<script src="skripte/prijava.js"></script>

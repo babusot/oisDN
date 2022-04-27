@@ -1,0 +1,62 @@
+hr {
+  height: 5px;
+  margin-bottom: 0;
+  border: 0;
+  box-shadow: 0 10px 10px -10px #8c8b8b inset;
+}
+.film {
+  width: 100%;
+}
+.film button {
+  width: auto;
+  margin-bottom: 5px;
+}
+i.fas,
+i.far {
+  padding-right: 5px;
+}
+#predlog {
+  text-decoration: underline;
+}
+.fa-globe-europe {
+  padding-left: 5px;
+}
+.input-group-text i.fas {
+  padding-right: 0px;
+}
+h3 {
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+h4,
+form {
+  display: inline;
+}
+h4 {
+  text-transform: uppercase;
+}
+.navbar {
+  padding: 2px;
+}
+option {
+  font-family: monospace;
+}
+.dovoljeno {
+  background-color: #d7ffcc !important;
+}
+.onemogoceno {
+  background-color: #ffe7de !important;
+}
+.odmik {
+  padding: 6px !important;
+}
+#PhoneValidate {
+  padding-left: 5px;
+}
+nav a {
+  color: black;
+  text-decoration: none;
+}
+nav a:hover {
+  color: black;
+}
